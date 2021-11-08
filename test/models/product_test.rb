@@ -2,11 +2,12 @@ require 'test_helper'
 
 class ProductTest < ActiveSupport::TestCase
   fixtures :products
+
   def new_product(image_url)
-    product = Product.new(title: 'My new Book',
-                          description: 'yyy',
-                          price: 1,
-                          image_url: image_url)
+    Product.new(title: 'My new Book',
+                description: 'yyy',
+                price: 1,
+                image_url: image_url)
   end
 
   test 'product attributes must not be empty' do
@@ -68,6 +69,15 @@ class ProductTest < ActiveSupport::TestCase
                           price: 1,
                           image_url: 'fred.gif')
     assert product.invalid?
-    assert_equal [I18n.translate('errors.messages.taken')], product.errors[:title]
+    assert_equal ['Title must be unique!'], product.errors[:title]
+  end
+
+  test 'title is at least ten characters' do
+    product = Product.new(title: '123qwe',
+                          description: 'yyy',
+                          price: 1,
+                          image_url: 'fred.gif')
+    assert product.invalid?
+    assert_equal ['is too short (minimum is 10 characters)'], product.errors[:title]
   end
 end
