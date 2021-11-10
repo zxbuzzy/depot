@@ -69,7 +69,7 @@ class ProductTest < ActiveSupport::TestCase
                           price: 1,
                           image_url: 'fred.gif')
     assert product.invalid?
-    assert_equal ['Title must be unique!'], product.errors[:title]
+    assert_equal ['must be unique!'], product.errors[:title]
   end
 
   test 'title is at least ten characters' do
