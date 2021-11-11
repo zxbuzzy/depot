@@ -46,6 +46,7 @@ header.main {
     padding-bottom: 1em;
     background: #141;
     text-align: center;
+    height: 100vh;
     @media (min-width: 30em) {
       text-align: left;
       padding: 1em;
@@ -62,6 +63,9 @@ header.main {
         padding: 0.5em;
         text-transform: uppercase;
         letter-spacing: 0.354em;
+      }
+      #time-display {
+        color: #bfb;
       }
       a{
         color: #bfb;

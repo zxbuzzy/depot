@@ -50,4 +50,19 @@ class ProductsControllerTest < ActionDispatch::IntegrationTest
 
     assert_redirected_to products_url
   end
+
+  test 'should have image' do
+    get products_url
+    assert_select 'main tbody tr td img', minimum: 1
+  end
+
+  test 'should have description' do
+    get products_url
+    assert_select 'main tbody tr td p', minimum: 1
+  end
+
+  test 'should have title' do
+    get products_url
+    assert_select 'main tbody tr td h1', minimum: 1
+  end
 end
