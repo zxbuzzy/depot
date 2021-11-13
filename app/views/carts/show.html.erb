@@ -4,10 +4,10 @@
 
 <h2>Your Pragmatic Cart</h2>
 <ul>
-  <% @cart.line_items.each do |line_item| %>
+  <% @cart.line_items.each do |item| %>
     <li>
-      <%= line_item.product.title %>
-      <%= image_tag(line_item.product.image_url) %>
+      <%= item.quantity %> &times; <%= item.product.title %>
+      <%= image_tag(item.product.image_url) %>
     </li>
   <% end %>
 </ul>
