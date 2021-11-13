@@ -23,7 +23,8 @@ class LineItemsControllerTest < ActionDispatch::IntegrationTest
     follow_redirect!
 
     assert_select 'h2', 'Your Pragmatic Cart'
-    assert_select 'li', "1 \u00D7 Programming Ruby 1.9"
+    assert_select 'td', 'Programming Ruby 1.9'
+    assert_select 'td', '1'
   end
 
   test 'should show line_item' do
@@ -47,6 +48,13 @@ class LineItemsControllerTest < ActionDispatch::IntegrationTest
       delete line_item_url(@line_item)
     end
 
-    assert_redirected_to line_items_url
+    assert_redirected_to @line_item.cart
+  end
+
+  test 'should decrease line_item' do
+    delete line_item_url(@line_item)
+    assert_equal 1, @line_item.quantity
+
+    assert_redirected_to @line_item.cart
   end
 end
